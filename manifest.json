@@ -1,0 +1,27 @@
+{
+  "name": "PWA Static Testing V1",
+  "short_name": "PWATest",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#a55ca7",
+  "theme_color" : "#333bad",
+  "orientation" : "portrait-primary",
+  "icons" : [
+    {
+      "src": "image/icon-192.png",
+      "type": "image/png",
+      "sizes" : "192x192"
+    },
+    {
+      "src": "image/icon-512.png",
+      "type": "image/png",
+      "sizes" : "512x512"
+    },
+    {
+      "src": "image/maskable_icon.png",
+      "type": "image/png",
+      "sizes" : "192x192",
+      "purpose" : "maskable"
+    }
+  ]
+}
