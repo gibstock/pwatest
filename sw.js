@@ -1,10 +1,12 @@
-const cacheName = 'site-static'
+const cacheName = 'site-static-v2'
 const assets = [
   '/',
   '/index.html',
   '/js/app.js',
   '/image/icon-192.png',
-  '/css/main.css'
+  '/css/main.css',
+  '/poems/poem1.html',
+  '/poems/poem2.html'
 
 ]
 // install service worker
