@@ -4,6 +4,7 @@ const stopBtn = document.getElementById('stop-watch')
 const longDisplay = document.getElementById('long')
 const latDisplay = document.getElementById('lat')
 const statusDisplay = document.getElementById('status')
+const sheets = document.getElementById('sheets')
 
 // position tracking
 let geoWatch;
@@ -77,12 +78,10 @@ function setCurrentPosition( position ) {
   const fetchedGoogleSheetData = fetch('https://docs.google.com/spreadsheets/d/1XCWJEx9MjOzYh9tXFQhFHdu8bdl40ty5GPrfk6p9cYE/gviz/tq?tqx=out:json')
     .then(response => response.text())
     .then(data => {
-      const result = (JSON.parse(data.slice(117, data.length - 3)))
-
-    
+      // Need to find the start of the json info becuase sheets updates the sig parameter
+      let colStart = data.indexOf("cols") -2
+      const result = (JSON.parse(data.slice(colStart, data.length - 3)))
     // there may be a more dynamic way to set the data as we scale up
-    
-
 
     let latA00 = result.rows[0].c[3].v
     let latB00 = result.rows[0].c[4].v
@@ -98,6 +97,8 @@ function setCurrentPosition( position ) {
     let name01 = result.rows[0].c[7].v
     let min01 = result.rows[0].c[8].v
     let sec01 = result.rows[0].c[9].v
+
+    sheets.innerText = result.rows[0].c[0].v
 
     console.log('fetched')
     
