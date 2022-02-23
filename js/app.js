@@ -37,11 +37,12 @@ if('serviceWorker' in navigator) {
   .catch((err) => console.log('service worker not registered', err))
 }
 
+//-----> Not fetching from config.json <----//
 // async fetch coordinates function
-async function fetchCoords(url) {
-  const res = await fetch(url)
-  return await res.json();
-}
+// async function fetchCoords(url) {
+//   const res = await fetch(url)
+//   return await res.json();
+// }
 
 // begin listening for coordinates and track changes
 function startWatch() {
@@ -67,25 +68,36 @@ function closeTab() {
 
 // begin to fetch coordinates and set the geolocation
 function setCurrentPosition( position ) {
+  //<----- OLD FETCH ----->
   // console.log("starting fetch")
-  fetchCoords("/js/config.json").then(data => {
-    console.log('fetching')
+  // fetchCoords("/js/config.json").then(data => {
+  //   console.log('fetching')
 
+  // Fetch coords from google sheet
+  const fetchedGoogleSheetData = fetch('https://docs.google.com/spreadsheets/d/1XCWJEx9MjOzYh9tXFQhFHdu8bdl40ty5GPrfk6p9cYE/gviz/tq?tqx=out:json')
+    .then(response => response.text())
+    .then(data => {
+      const result = (JSON.parse(data.slice(117, data.length - 3)))
+
+    
     // there may be a more dynamic way to set the data as we scale up
-    let latA00 = data.coords[0].latA
-    let latB00 = data.coords[0].latB
-    let lonA00 = data.coords[0].lonA
-    let lonB00 = data.coords[0].lonB
-    let name00 = data.coords[0].name
-    let min00 = data.coords[0].time.min
-    let sec00 = data.coords[0].time.sec
-    let latA01 = data.coords[1].latA
-    let latB01 = data.coords[1].latB
-    let lonA01 = data.coords[1].lonA
-    let lonB01 = data.coords[1].lonB
-    let name01 = data.coords[1].name
-    let min01 = data.coords[1].time.min
-    let sec01 = data.coords[1].time.sec
+    
+
+
+    let latA00 = result.rows[0].c[3].v
+    let latB00 = result.rows[0].c[4].v
+    let lonA00 = result.rows[0].c[5].v
+    let lonB00 = result.rows[0].c[6].v
+    let name00 = result.rows[0].c[7].v
+    let min00 = result.rows[0].c[8].v
+    let sec00 = result.rows[0].c[9].v
+    let latA01 = result.rows[0].c[3].v
+    let latB01 = result.rows[0].c[4].v
+    let lonA01 = result.rows[0].c[5].v
+    let lonB01 = result.rows[0].c[6].v
+    let name01 = result.rows[0].c[7].v
+    let min01 = result.rows[0].c[8].v
+    let sec01 = result.rows[0].c[9].v
 
     console.log('fetched')
     
