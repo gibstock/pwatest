@@ -1,5 +1,5 @@
-const cacheName = 'site-static-v23' // need to update version with changes
-const dynamicCacheName = 'site-dynamic-v6' // need to update version with changes
+const cacheName = 'site-static-v23.02' // need to update version with changes
+const dynamicCacheName = 'site-dynamic-v6.00' // need to update version with changes
 const assets = [
   '/',
   '/index.html',
@@ -51,6 +51,10 @@ self.addEventListener('fetch', (event) => {
           return fetchRes;
         })
       })
-    }).catch(() => caches.match('/routes/fallback.html'))
+    }).catch(() => {
+      if(event.request.url.indexOf('html') > -1) {
+        return caches.match('/routes/fallback.html')
+      }
+    })
   )
 })

@@ -78,11 +78,12 @@ function setCurrentPosition( position ) {
   const fetchedGoogleSheetData = fetch('https://docs.google.com/spreadsheets/d/1XCWJEx9MjOzYh9tXFQhFHdu8bdl40ty5GPrfk6p9cYE/gviz/tq?tqx=out:json')
     .then(response => response.text())
     .then(data => {
+      console.log(data)
       // Need to find the start of the json info becuase sheets updates the sig parameter
       let colStart = data.indexOf("cols") -2
       const result = (JSON.parse(data.slice(colStart, data.length - 3)))
     // there may be a more dynamic way to set the data as we scale up
-
+    console.log(result)
     let latA00 = result.rows[0].c[3].v
     let latB00 = result.rows[0].c[4].v
     let lonA00 = result.rows[0].c[5].v
@@ -90,13 +91,13 @@ function setCurrentPosition( position ) {
     let name00 = result.rows[0].c[7].v
     let min00 = result.rows[0].c[8].v
     let sec00 = result.rows[0].c[9].v
-    let latA01 = result.rows[0].c[3].v
-    let latB01 = result.rows[0].c[4].v
-    let lonA01 = result.rows[0].c[5].v
-    let lonB01 = result.rows[0].c[6].v
-    let name01 = result.rows[0].c[7].v
-    let min01 = result.rows[0].c[8].v
-    let sec01 = result.rows[0].c[9].v
+    let latA01 = result.rows[1].c[3].v
+    let latB01 = result.rows[1].c[4].v
+    let lonA01 = result.rows[1].c[5].v
+    let lonB01 = result.rows[1].c[6].v
+    let name01 = result.rows[1].c[7].v
+    let min01 = result.rows[1].c[8].v
+    let sec01 = result.rows[1].c[9].v
 
     sheets.innerText = result.rows[0].c[0].v
 
@@ -113,7 +114,7 @@ function setCurrentPosition( position ) {
 
     // if the coordinate bounding box is entered
     if(latCoordCheck >= latA00 && latCoordCheck <= latB00 && lonCoordCheck >= lonA00 && lonCoordCheck <= lonB00) {
-      poem = "poem-1"
+      poem = name00
       let timer = (((min00*60) + sec00) * 1000)
       
       // if the window has not previously been opened
@@ -137,7 +138,7 @@ function setCurrentPosition( position ) {
     // maybe these can be modularized
     console.log(latCoordCheck >= latA01 , latCoordCheck <= latB01 ,lonCoordCheck >= lonA01 ,lonCoordCheck <= lonB01)
     if(latCoordCheck >= latA01 && latCoordCheck <= latB01 && lonCoordCheck >= lonA01 && lonCoordCheck <= lonB01) {
-      poem = "poem-2"
+      poem = name01
       let timer = (((min01*60) + sec01) * 1000)
       console.log(typeof timer) // making sure timer renders as a number
       if(location != `${poemsUrl}${poem}${AUTH}` && openTab !== `${poemsUrl}${poem}${AUTH}` && identifier !== name01) {
