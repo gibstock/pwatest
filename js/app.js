@@ -90,7 +90,7 @@ function setCurrentPosition( position ) {
       let colStart = data.indexOf("cols") -2
       const result = (JSON.parse(data.slice(colStart, data.length - 3))).rows
     // there may be a more dynamic way to set the data as we scale up
-    console.log(result)
+    // console.log(result)
     let lat1 = result[0].c[0].v
     let lon1 = result[0].c[1].v
     let url1 = result[0].c[2].v
@@ -129,14 +129,17 @@ function setCurrentPosition( position ) {
     lonCoordCheck = position.coords.longitude
 
     //testing truthiness of condition
-    console.log(latCoordCheck >= (lat1 - LAT_RADIUS) , latCoordCheck <= (lat1 + LAT_RADIUS) ,lonCoordCheck >= (lon1 - LON_RADIUS) ,lonCoordCheck <= (lon1 + LON_RADIUS))
+    console.log("poem 1", latCoordCheck >= (lat1 - LAT_RADIUS) , latCoordCheck <= (lat1 + LAT_RADIUS) ,lonCoordCheck >= (lon1 - LON_RADIUS) ,lonCoordCheck <= (lon1 + LON_RADIUS))
 
     // if the coordinate bounding box is entered
     // if(latCoordCheck >= latA00 && latCoordCheck <= latB00 && lonCoordCheck >= lonA00 && lonCoordCheck <= lonB00) {
-    if(latCoordCheck >= (lat1 - LAT_RADIUS) , latCoordCheck <= (lat1 + LAT_RADIUS) ,lonCoordCheck >= (lon1 - LON_RADIUS) ,lonCoordCheck <= (lon1 + LON_RADIUS)) {
+    if(latCoordCheck >= (lat1 - LAT_RADIUS) && latCoordCheck <= (lat1 + LAT_RADIUS) && lonCoordCheck >= (lon1 - LON_RADIUS) && lonCoordCheck <= (lon1 + LON_RADIUS)) {
+      console.log(url1)
       poem = name1
       let timer = (((min1*60) + sec1) * 1000)
-      
+      console.log(typeof timer)
+      console.log("timer", timer)
+      console.log("open tab before launch", openTab)
       // if the window has not previously been opened
       if(openTab[0] !== `${url1}` && openTab !== `${url1}` && identifier !== name1) {
         // launch the new window with the poems page
@@ -156,15 +159,15 @@ function setCurrentPosition( position ) {
 
     // there will be the same code block for each location
     // maybe these can be modularized
-    console.log(latCoordCheck >= latA01 , latCoordCheck <= latB01 ,lonCoordCheck >= lonA01 ,lonCoordCheck <= lonB01)
-    // if(latCoordCheck >= latA01 && latCoordCheck <= latB01 && lonCoordCheck >= lonA01 && lonCoordCheck <= lonB01) {
-    if(latCoordCheck >= latA01 && latCoordCheck <= latB01 && lonCoordCheck >= lonA01 && lonCoordCheck <= lonB01) {
-      poem = name01
-      let timer = (((min01*60) + sec01) * 1000)
+    console.log("poem 2", latCoordCheck >= (lat2 - LAT_RADIUS) , latCoordCheck <= (lat2 + LAT_RADIUS) ,lonCoordCheck >= (lon2 - LON_RADIUS) ,lonCoordCheck <= (lon2 + LON_RADIUS))
+    // if(latCoordCheck >= lat2 && latCoordCheck <= latB01 && lonCoordCheck >= lonA01 && lonCoordCheck <= lonB01) {
+    if(latCoordCheck >= (lat2 - LAT_RADIUS) && latCoordCheck <= (lat2 + LAT_RADIUS) && lonCoordCheck >= (lon2 - LON_RADIUS) && lonCoordCheck <= (lon2 + LON_RADIUS)) {
+      poem = name2
+      let timer = (((min2*60) + sec2) * 1000)
       console.log(typeof timer) // making sure timer renders as a number
-      if(location != `${poemsUrl}${poem}${AUTH}` && openTab !== `${poemsUrl}${poem}${AUTH}` && identifier !== name01) {
-        openTab.push(window.open(`${poemsUrl}${poem}${AUTH}`, '_blank'))
-        identifier = name01
+      if(location != `${url2}` && openTab !== `${url2}` && identifier !== name2) {
+        openTab.push(window.open(`${url2}`, '_blank'))
+        identifier = name2
         if(openTab[1]) {
           closeTab()
         }
