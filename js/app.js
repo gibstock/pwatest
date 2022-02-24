@@ -24,8 +24,10 @@ let identifier;
 
 // Log the currently launched external url
 const openTab = []
-const poemsUrl = "https://sites.google.com/view/soundriver/home/the-poems/"
-const AUTH = "?authuser=0"
+
+// Deprecated constants
+// const poemsUrl = "https://sites.google.com/view/soundriver/home/the-poems/"
+// const AUTH = "?authuser=0"
 
 // ------> Old function for checking route location <----- //
 // window.addEventListener('DOMContentLoaded', () => {
@@ -94,6 +96,13 @@ function setCurrentPosition( position ) {
     let url1 = result[0].c[2].v
     let min1 = result[0].c[5].v
     let sec1 = result[0].c[6].v
+    let name1 = result[0].c[7].v
+    let lat2 = result[1].c[0].v
+    let lon2 = result[1].c[1].v
+    let url2 = result[1].c[2].v
+    let min2 = result[1].c[5].v
+    let sec2 = result[1].c[6].v
+    let name2 = result[1].c[7].v
     // let latA00 = result.rows[0].c[3].v
     // let latB00 = result.rows[0].c[4].v
     // let lonA00 = result.rows[0].c[5].v
@@ -114,8 +123,8 @@ function setCurrentPosition( position ) {
     console.log('fetched')
     
     //  for displaying the coordinates - testing purposes
-    longDisplay.innerHTML = position.coords.longitude
     latDisplay.innerHTML = position.coords.latitude
+    longDisplay.innerHTML = position.coords.longitude
     latCoordCheck = position.coords.latitude
     lonCoordCheck = position.coords.longitude
 
@@ -125,14 +134,14 @@ function setCurrentPosition( position ) {
     // if the coordinate bounding box is entered
     // if(latCoordCheck >= latA00 && latCoordCheck <= latB00 && lonCoordCheck >= lonA00 && lonCoordCheck <= lonB00) {
     if(latCoordCheck >= (lat1 - LAT_RADIUS) , latCoordCheck <= (lat1 + LAT_RADIUS) ,lonCoordCheck >= (lon1 - LON_RADIUS) ,lonCoordCheck <= (lon1 + LON_RADIUS)) {
-      poem = name00
+      poem = name1
       let timer = (((min1*60) + sec1) * 1000)
       
       // if the window has not previously been opened
-      if(openTab[0] !== `${poemsUrl}${poem}${AUTH}` && openTab !== `${poemsUrl}${poem}${AUTH}` && identifier !== name00) {
+      if(openTab[0] !== `${url1}` && openTab !== `${url1}` && identifier !== name1) {
         // launch the new window with the poems page
-        openTab.push(window.open(`${poemsUrl}${poem}${AUTH}`, '_blank'))
-        identifier = name00
+        openTab.push(window.open(`${url1}`, '_blank'))
+        identifier = name1
         console.log("old tab open", openTab[1])
         if(openTab[1]) {
           closeTab()
