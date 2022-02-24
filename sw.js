@@ -1,15 +1,26 @@
-const cacheName = 'site-static-v23.02' // need to update version with changes
+const cacheName = 'site-static-v23.04' // need to update version with changes
 const dynamicCacheName = 'site-dynamic-v6.00' // need to update version with changes
 const assets = [
   '/',
   '/index.html',
   '/js/app.js',
-  '/js/config.json',
   '/image/icon-192.png',
   '/css/main.css',
   '/routes/fallback.html'
 
 ]
+
+// Limit cache size
+const limitCacheSize = (name, size) => {
+  caches.open(name).then(cache => {
+    cache.keys().then(keys => {
+      if(keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(name, size))
+      }
+    })
+  })
+}
+
 // install service worker
 self.addEventListener('install', (event) => {
   // console.log('service worker has been installed')
@@ -48,6 +59,7 @@ self.addEventListener('fetch', (event) => {
       return cacheRes || fetch(event.request).then(fetchRes => {
         return caches.open(dynamicCacheName).then(cache => {
           cache.put(event.request.url, fetchRes.clone());
+          limitCacheSize(dynamicCacheName, 6)
           return fetchRes;
         })
       })
