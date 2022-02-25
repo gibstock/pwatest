@@ -233,4 +233,5 @@ input:checked + .slider:before {
    height: 100%;
    grid-column: 3/6;
    text-align: center;
+   padding-right: 1em;
  }
