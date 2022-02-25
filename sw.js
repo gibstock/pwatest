@@ -1,10 +1,13 @@
-const cacheName = 'site-static-v23.05' // need to update version with changes
+const cacheName = 'site-static-v23.07' // need to update version with changes
 const dynamicCacheName = 'site-dynamic-v6.00' // need to update version with changes
 const assets = [
   '/',
   '/index.html',
   '/js/app.js',
+  '/js/sidebar.js',
   '/image/icon-192.png',
+  '/image/mtb-image.jpg',
+  '/image/tracking-image.png',
   '/css/main.css',
   '/routes/fallback.html'
 

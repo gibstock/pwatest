@@ -7,6 +7,7 @@
   <meta name="description" content="This is a testing site for discovering the benefits of PWA including GPS tracking.">
   <link rel="manifest" href="/manifest.json">
   <script src="/js/app.js" defer></script>
+  <script src="/js/sidebar.js" defer></script>
   <title>PWA Test Static Site</title>
   <link rel="stylesheet" href="/css/main.css">
   <!-- IOS Support  -->
@@ -15,20 +16,58 @@
   <meta name="theme-color" content="#333bad">
 </head>
 <body>
+  <header>
+    <nav>
+      <div class="nav-menu-button">
+        <button id="openBtn">&#9776; MENU</button>
+      </div>
+      <div id="sidebar" class="nav-sidebar">
+        <button id="closeBtn">&times;</button>
+        <a href="#">About The Project</a>
+        <a href="#">Daivs Poet Website</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Support</a>
+      </div>
+    </nav>
+  </header>
   <main>
-    <div class="flex-col-center">
-      <h1>PWA Static Website</h1>
-      <img src="/image/icon-192.png" width="192" height="192" alt="app icon">
-      <button id="start-watch">Start Tracking</button>
-      <button id="stop-watch">Stop Tracking</button>
-    </div>
-    <div class="coord-display-box">
-      <h2>Your GPS Coordinates</h2>
-      <div class="coord-display">Latitude: <span id='lat'></span></div>
-      <div class="coord-display">Longitude: <span id='long'></span></div>
-      <div class="coord-display">Status: <span id="status"></span></div>
-      <div class="coord-display">Sheets Test: <span id='sheets'></span></div>
+    <div class="container">
+      <section id="main-header">
+
+      </section>
+      <section id="main-content">
+        <div class="content-container">
+          <div class="tracking-controls">
+            <div class="toggle-group">
+              <label class="switch">
+                <input type="checkbox" id="tracking-toggle">
+                <span class="slider round"></span>
+              </label>
+              <div class="power-indicator">
+                <div id="on">ON</div>
+                <div id="off">OFF</div>
+              </div>
+            </div>
+            <div class="tracking-info">
+              <div id="tracking-message">
+                TRACKING
+              </div>
+              <div class="coordinate-container">
+                <span id="latitude">323323</span>
+                <span id="longitude">323233</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-content">
+            <h2>Davis Poet Laureate Project App</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea eveniet quos laboriosam necessitatibus voluptate a!</p>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
+  <footer>
+
+  </footer>
 </body>
 </html>

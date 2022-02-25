@@ -80,17 +80,22 @@ function setCurrentPosition( position ) {
   // fetchCoords("/js/config.json").then(data => {
   //   console.log('fetching')
 
-  // Fetch coords from google sheet
+  // Test google sheet
   // const fetchedGoogleSheetData = fetch('https://docs.google.com/spreadsheets/d/1XCWJEx9MjOzYh9tXFQhFHdu8bdl40ty5GPrfk6p9cYE/gviz/tq?tqx=out:json')
+  
+  
+  // Fetch coords from google sheet
   const fetchedGoogleSheetData = fetch('https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJzPai5zNXgZBHl1qR5pO3Aog/gviz/tq?tqx=out:json')
     .then(response => response.text())
     .then(data => {
-      // console.log(data)
+
       // Need to find the start of the json info becuase sheets updates the sig parameter
       let colStart = data.indexOf("cols") -2
+
+      // Get only the part of the google sheet response that is in json format, parse as json
       const result = (JSON.parse(data.slice(colStart, data.length - 3))).rows
-    // there may be a more dynamic way to set the data as we scale up
-    // console.log(result)
+
+    // -- there may be a more dynamic way to set the data as we scale up
     let lat1 = result[0].c[0].v
     let lon1 = result[0].c[1].v
     let url1 = result[0].c[2].v
@@ -103,22 +108,7 @@ function setCurrentPosition( position ) {
     let min2 = result[1].c[5].v
     let sec2 = result[1].c[6].v
     let name2 = result[1].c[7].v
-    // let latA00 = result.rows[0].c[3].v
-    // let latB00 = result.rows[0].c[4].v
-    // let lonA00 = result.rows[0].c[5].v
-    // let lonB00 = result.rows[0].c[6].v
-    // let name00 = result.rows[0].c[7].v
-    // let min00 = result.rows[0].c[8].v
-    // let sec00 = result.rows[0].c[9].v
-    // let latA01 = result.rows[1].c[3].v
-    // let latB01 = result.rows[1].c[4].v
-    // let lonA01 = result.rows[1].c[5].v
-    // let lonB01 = result.rows[1].c[6].v
-    // let name01 = result.rows[1].c[7].v
-    // let min01 = result.rows[1].c[8].v
-    // let sec01 = result.rows[1].c[9].v
-
-    // sheets.innerText = result.rows[0].c[0].v
+    
 
     console.log('fetched')
     
@@ -132,7 +122,6 @@ function setCurrentPosition( position ) {
     console.log("poem 1", latCoordCheck >= (lat1 - LAT_RADIUS) , latCoordCheck <= (lat1 + LAT_RADIUS) ,lonCoordCheck >= (lon1 - LON_RADIUS) ,lonCoordCheck <= (lon1 + LON_RADIUS))
 
     // if the coordinate bounding box is entered
-    // if(latCoordCheck >= latA00 && latCoordCheck <= latB00 && lonCoordCheck >= lonA00 && lonCoordCheck <= lonB00) {
     if(latCoordCheck >= (lat1 - LAT_RADIUS) && latCoordCheck <= (lat1 + LAT_RADIUS) && lonCoordCheck >= (lon1 - LON_RADIUS) && lonCoordCheck <= (lon1 + LON_RADIUS)) {
       console.log(url1)
       poem = name1
@@ -142,25 +131,32 @@ function setCurrentPosition( position ) {
       console.log("open tab before launch", openTab)
       // if the window has not previously been opened
       if(openTab[0] !== `${url1}` && openTab !== `${url1}` && identifier !== name1) {
-        // launch the new window with the poems page
+
+        // launch the new window with the poems page and push the location of the open tab to openTab
         openTab.push(window.open(`${url1}`, '_blank'))
+
+        // Set identifier to current poem
         identifier = name1
-        console.log("old tab open", openTab[1])
+        
+        // If a tab already exists, close it
         if(openTab[1]) {
           closeTab()
         }
+
+        // Auto close the tab after the length of the current poem has passed
         setTimeout(() => {
           for(let i = 0; i<openTab.length; i++) {
             openTab[i].close()
           }
         }, timer)
       }
+    sheets.innerText = poem
+
     }
 
     // there will be the same code block for each location
     // maybe these can be modularized
-    console.log("poem 2", latCoordCheck >= (lat2 - LAT_RADIUS) , latCoordCheck <= (lat2 + LAT_RADIUS) ,lonCoordCheck >= (lon2 - LON_RADIUS) ,lonCoordCheck <= (lon2 + LON_RADIUS))
-    // if(latCoordCheck >= lat2 && latCoordCheck <= latB01 && lonCoordCheck >= lonA01 && lonCoordCheck <= lonB01) {
+    // console.log("poem 2", latCoordCheck >= (lat2 - LAT_RADIUS) , latCoordCheck <= (lat2 + LAT_RADIUS) ,lonCoordCheck >= (lon2 - LON_RADIUS) ,lonCoordCheck <= (lon2 + LON_RADIUS))
     if(latCoordCheck >= (lat2 - LAT_RADIUS) && latCoordCheck <= (lat2 + LAT_RADIUS) && lonCoordCheck >= (lon2 - LON_RADIUS) && lonCoordCheck <= (lon2 + LON_RADIUS)) {
       poem = name2
       let timer = (((min2*60) + sec2) * 1000)
@@ -171,13 +167,18 @@ function setCurrentPosition( position ) {
         if(openTab[1]) {
           closeTab()
         }
+        setTimeout(() => {
+          for(let i = 0; i<openTab.length; i++) {
+            openTab[i].close()
+          }
+        }, timer)
       }
-      setTimeout(() => {
-        for(let i = 0; i<openTab.length; i++) {
-          openTab[i].close()
-        }
-      }, timer)
+      // Output the name of the current poem
+      sheets.innerText = poem
+
     }
+
+
   })
 }
 
@@ -216,5 +217,5 @@ function stopWatch() {
   console.log('tracking stopped')
 }
 
-stopBtn.addEventListener('click', stopWatch)
-startBtn.addEventListener('click', startWatch)
+// stopBtn.addEventListener('click', stopWatch)
+// startBtn.addEventListener('click', startWatch)
