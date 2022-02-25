@@ -1,10 +1,15 @@
 const startBtn = document.getElementById('start-watch')
 const stopBtn = document.getElementById('stop-watch')
 
-const longDisplay = document.getElementById('long')
-const latDisplay = document.getElementById('lat')
-const statusDisplay = document.getElementById('status')
+const longDisplay = document.getElementById('longDisplay')
+const latDisplay = document.getElementById('latDisplay')
+const statusDisplay = document.getElementById('tracking')
+const trackingBox = document.getElementById('tracking-message-box')
 const sheets = document.getElementById('sheets')
+
+const toggle = document.getElementById('tracking-toggle')
+const onIndicator = document.getElementById('on')
+const offIndicator = document.getElementById('off')
 
 //Constants for establishing an equal perimeter
 const LAT_RADIUS = 0.0011
@@ -217,5 +222,25 @@ function stopWatch() {
   console.log('tracking stopped')
 }
 
+function checkToggle () {
+  if(toggle.checked) {
+    onIndicator.classList.remove('dim')
+    onIndicator.classList.add('lit')
+    offIndicator.classList.remove('lit')
+    offIndicator.classList.add('dim')
+    trackingBox.style.visibility = 'visible'
+    startWatch()
+  } else {
+    offIndicator.classList.remove('dim')
+    offIndicator.classList.add('lit')
+    onIndicator.classList.remove('lit')
+    onIndicator.classList.add('dim')
+    trackingBox.style.visibility = 'hidden'
+
+    stopWatch()
+  }
+}
+
+toggle.addEventListener('change', checkToggle)
 // stopBtn.addEventListener('click', stopWatch)
 // startBtn.addEventListener('click', startWatch)
