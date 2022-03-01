@@ -1,10 +1,10 @@
 {
-  "name": "PWA Static Testing V2",
-  "short_name": "PWATest",
+  "name": "Davis Poet Laureate Project App",
+  "short_name": "Davis Poet Project",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#cac8c8",
-  "theme_color" : "#111",
+  "background_color": "#111111",
+  "theme_color" : "#111111",
   "orientation" : "portrait-primary",
   "icons" : [
     {

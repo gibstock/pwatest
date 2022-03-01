@@ -126,11 +126,23 @@ input:checked + .slider:before {
 }
 
  /* MAIN CONTENT */
- .container {
+ .container, .container-fallback {
    height: 100vh;
    /* min-height: -webkit-fill-available; */
    display: flex;
    flex-flow: column;
+ }
+ .container-fallback {
+   justify-content: center;
+   align-items: center;
+   color: #eff;
+   background-color: #111;
+ }
+ .container-fallback a {
+   color: #eff;
+ }
+ .fallback-image {
+   font-size: 50vw;
  }
  #main-header {
    background-image: url('/image/mtb-image.jpg');

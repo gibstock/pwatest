@@ -7,7 +7,6 @@ const assets = [
   '/js/sidebar.js',
   '/image/icon-192.png',
   '/image/mtb-image.jpg',
-  '/image/tracking-image.png',
   '/css/main.css',
   '/routes/fallback.html'
 
@@ -53,20 +52,23 @@ self.addEventListener('activate', (event) => {
 
 // fetch event
 self.addEventListener('fetch', (event) => {
-  // console.log('fetch event', event)
+
   //pauses the fetch request and redirects it
   event.respondWith(
+
     // if the returned object has the fetched items in the cache, 
     // return that object otherwise continue with the fetch
     caches.match(event.request).then(cacheRes => {
       return cacheRes || fetch(event.request).then(fetchRes => {
         return caches.open(dynamicCacheName).then(cache => {
           cache.put(event.request.url, fetchRes.clone());
+          // Function to limit the size of cached assets. Can be updated as desired
           limitCacheSize(dynamicCacheName, 6)
           return fetchRes;
         })
       })
     }).catch(() => {
+      // If the requested page is not stored in the cache, the fallback page is returned
       if(event.request.url.indexOf('html') > -1) {
         return caches.match('/routes/fallback.html')
       }
