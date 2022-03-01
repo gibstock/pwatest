@@ -1,8 +1,8 @@
 ![Markdown Banner](/image/markdown-banner.png)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/design-hub-arc/davis-laureate-project)
-![GitHub last commit](https://img.shields.io/github/last-commit/design-hub-arc/davis-laureate-project)
-![GitHub top language](https://img.shields.io/github/languages/top/design-hub-arc/davis-laureate-project)
+![GitHub repo size](https://img.shields.io/github/repo-size/gibstock/pwatest)
+![GitHub last commit](https://img.shields.io/github/last-commit/gibstock/pwatest)
+![GitHub top language](https://img.shields.io/github/languages/top/gibstock/pwatest)
 
 ---
 ## Table of Contents
