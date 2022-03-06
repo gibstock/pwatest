@@ -8,6 +8,9 @@ const toggle = document.getElementById('tracking-toggle')
 const onIndicator = document.getElementById('on')
 const offIndicator = document.getElementById('off')
 
+const MASTER_URL = 'https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJzPai5zNXgZBHl1qR5pO3Aog/gviz/tq?tqx=out:json'
+const TESTING_URL = 'https://docs.google.com/spreadsheets/d/1UXk1YdG3AOJQ2YkSMxBG5PWebQGkO_TXq5Ni7s6ffws/gviz/tq?tqx=out:json'
+
 //Constants for establishing an equal perimeter. Can be adjusted to fit the bounding area
 const LAT_RADIUS = 0.0011
 const LON_RADIUS = 0.00050
@@ -60,7 +63,7 @@ function closeTab() {
 function setCurrentPosition( position ) {
     
   // Fetch coords from google sheet
-  const fetchedGoogleSheetData = fetch('https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJzPai5zNXgZBHl1qR5pO3Aog/gviz/tq?tqx=out:json')
+  const fetchedGoogleSheetData = fetch(TESTING_URL)
     .then(response => response.text())
     .then(data => {
 
@@ -77,6 +80,7 @@ function setCurrentPosition( position ) {
     let lat1 = result[0].c[0].v
     let lon1 = result[0].c[1].v
     let url1 = result[0].c[2].v
+    let youtubeUrl1 = result[0].c[3]
     let min1 = result[0].c[5].v
     let sec1 = result[0].c[6].v
     let name1 = result[0].c[7].v
@@ -85,71 +89,80 @@ function setCurrentPosition( position ) {
     let lat2 = result[1].c[0].v
     let lon2 = result[1].c[1].v
     let url2 = result[1].c[2].v
+    let youtubeUrl2 = result[1].c[3]
     let min2 = result[1].c[5].v
     let sec2 = result[1].c[6].v
     let name2 = result[1].c[7].v
-
+    
     // Poem 3
     let lat3 = result[2].c[0].v
     let lon3 = result[2].c[1].v
     let url3 = result[2].c[2].v
+    let youtubeUrl3 = result[2].c[3]
     let min3 = result[2].c[5].v
     let sec3 = result[2].c[6].v
     let name3 = result[2].c[7].v
-
+    
     // Poem 4
     let lat4 = result[3].c[0].v
     let lon4 = result[3].c[1].v
     let url4 = result[3].c[2].v
+    let youtubeUrl4 = result[3].c[3]
     let min4 = result[3].c[5].v
     let sec4 = result[3].c[6].v
     let name4 = result[3].c[7].v
-
+    
     // Poem 5
     let lat5 = result[4].c[0].v
     let lon5 = result[4].c[1].v
     let url5 = result[4].c[2].v
+    let youtubeUrl5 = result[4].c[3]
     let min5 = result[4].c[5].v
     let sec5 = result[4].c[6].v
     let name5 = result[4].c[7].v
-
+    
     // Poem 6
     let lat6 = result[5].c[0].v
     let lon6 = result[5].c[1].v
     let url6 = result[5].c[2].v
+    let youtubeUrl6 = result[5].c[3]
     let min6 = result[5].c[5].v
     let sec6 = result[5].c[6].v
     let name6 = result[5].c[7].v
-
+    
     // Poem 7
     let lat7 = result[6].c[0].v
     let lon7 = result[6].c[1].v
     let url7 = result[6].c[2].v
+    let youtubeUrl7 = result[6].c[3]
     let min7 = result[6].c[5].v
     let sec7 = result[6].c[6].v
     let name7 = result[6].c[7].v
     console.log(name7)
-
+    
     // Poem 8
     let lat8 = result[7].c[0].v
     let lon8 = result[7].c[1].v
     let url8 = result[7].c[2].v
+    let youtubeUrl8 = result[7].c[3]
     let min8 = result[7].c[5].v
     let sec8 = result[7].c[6].v
     let name8 = result[7].c[7].v
-
+    
     // Poem 9
     let lat9 = result[8].c[0].v
     let lon9 = result[8].c[1].v
     let url9 = result[8].c[2].v
+    let youtubeUrl9 = result[8].c[3]
     let min9 = result[8].c[5].v
     let sec9 = result[8].c[6].v
     let name9 = result[8].c[7].v
-
+    
     // Poem 10
     let lat10 = result[9].c[0].v
     let lon10 = result[9].c[1].v
     let url10 = result[9].c[2].v
+    let youtubeUrl10 = result[9].c[3]
     let min10 = result[9].c[5].v
     let sec10 = result[9].c[6].v
     let name10 = result[9].c[7].v
@@ -374,6 +387,8 @@ function setCurrentPosition( position ) {
     }
 
     // POEM 10 //////
+    console.log("poem 10", latCoordCheck >= (lat10 - LAT_RADIUS) , latCoordCheck <= (lat10 + LAT_RADIUS) ,lonCoordCheck >= (lon10 - LON_RADIUS) ,lonCoordCheck <= (lon10 + LON_RADIUS))
+
     if(latCoordCheck >= (lat10 - LAT_RADIUS) && latCoordCheck <= (lat10 + LAT_RADIUS) && lonCoordCheck >= (lon10 - LON_RADIUS) && lonCoordCheck <= (lon10 + LON_RADIUS)) {
       poem = name10
       let timer = (((min10*60) + sec10) * 1000)
