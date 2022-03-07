@@ -1,5 +1,5 @@
-const cacheName = 'site-static-v23-17' // need to update version with changes
-const dynamicCacheName = 'site-dynamic-v6-09' // need to update version with changes
+const cacheName = 'site-static-v23-19' // need to update version with changes
+const dynamicCacheName = 'site-dynamic-v6-11' // need to update version with changes
 const assets = [
   '/',
   '/index.html',

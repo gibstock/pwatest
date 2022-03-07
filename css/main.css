@@ -1,11 +1,11 @@
-/* html {
-  height: -webkit-fill-available;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   height: 100%;
+  font-family: 'Raleway', sans-serif;
 }
 
  /* MENU AND SIDEBAR  */
@@ -176,6 +176,7 @@ input:checked + .slider:before {
    display: grid;
    grid-template-columns: repeat(5, 1fr);
    grid-row: 1/3;
+   position: relative;
  }
  .switch {
    grid-column: 1/4;
@@ -202,7 +203,6 @@ input:checked + .slider:before {
    grid-row: 3/6;
  }
  #tracking-message-box {
-   /* filter: url('#goo'); */
    visibility: hidden;
    overflow: hidden;
    z-index: 1;
@@ -213,6 +213,11 @@ input:checked + .slider:before {
    height: 100%;
    filter: drop-shadow(0px 8px 4px #ccc);
  }
+
+ .bounce-animation {
+  animation: bounce 1.5s ease-out  infinite;
+ }
+
  #tracking-message {
   display: flex;
   justify-content: center;
@@ -242,4 +247,55 @@ input:checked + .slider:before {
    grid-column: 3/6;
    text-align: center;
    padding-right: 1em;
+ }
+
+ .info-content h3 {
+   position: relative;
+ }
+ input[type="button"] {
+   align-self: center;
+   background-color: #111;
+   color: #f1f1f1;
+   margin-bottom: 1em;
+ }
+
+ .arrow {
+   position: absolute;
+   top: -100%;
+   left: -60%;
+   width: 5em;
+   animation: reveal 3s linear;
+ }
+ #details {
+   display: none;
+ }
+ ol {
+   padding: 0;
+   margin-top: 0;
+   text-align: left;
+ }
+ .footer-details {
+   width: 100%;
+   text-align: center;
+ }
+
+ @keyframes reveal {
+   0% {
+     opacity: 0;
+   }
+   100% {
+     opacity: 1;
+   }
+   
+ }
+ @keyframes bounce {
+   0% {
+     transform: translateY(0);
+   }
+   50% {
+     transform: translateY(-10px);
+   }
+   100% {
+     transform: translateY(0);
+   }
  }

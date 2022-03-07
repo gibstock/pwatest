@@ -7,6 +7,7 @@ const sheets = document.getElementById('sheets')
 const toggle = document.getElementById('tracking-toggle')
 const onIndicator = document.getElementById('on')
 const offIndicator = document.getElementById('off')
+const leftArrow = document.querySelector('.arrow')
 
 const MASTER_URL = 'https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJzPai5zNXgZBHl1qR5pO3Aog/gviz/tq?tqx=out:json'
 const TESTING_URL = 'https://docs.google.com/spreadsheets/d/1UXk1YdG3AOJQ2YkSMxBG5PWebQGkO_TXq5Ni7s6ffws/gviz/tq?tqx=out:json'
@@ -503,6 +504,8 @@ function checkToggle () {
     offIndicator.classList.remove('lit')
     offIndicator.classList.add('dim')
     trackingBox.style.visibility = 'visible'
+    trackingBox.classList.add('bounce-animation')
+    leftArrow.style.display = 'none'
     startWatch()
   } else {
     offIndicator.classList.remove('dim')
@@ -510,7 +513,8 @@ function checkToggle () {
     onIndicator.classList.remove('lit')
     onIndicator.classList.add('dim')
     trackingBox.style.visibility = 'hidden'
-
+    trackingBox.classList.remove('bounce-animation')
+    leftArrow.style.display = 'flex'
     stopWatch()
   }
 }
