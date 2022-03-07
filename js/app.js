@@ -8,6 +8,7 @@ const toggle = document.getElementById('tracking-toggle')
 const onIndicator = document.getElementById('on')
 const offIndicator = document.getElementById('off')
 const leftArrow = document.querySelector('.arrow')
+const mainHeaderImage = document.getElementById('main-header')
 
 const MASTER_URL = 'https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJzPai5zNXgZBHl1qR5pO3Aog/gviz/tq?tqx=out:json'
 const TESTING_URL = 'https://docs.google.com/spreadsheets/d/1UXk1YdG3AOJQ2YkSMxBG5PWebQGkO_TXq5Ni7s6ffws/gviz/tq?tqx=out:json'
@@ -188,8 +189,10 @@ function setCurrentPosition( position ) {
     // POEM 1 ////////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat1 - LAT_RADIUS) && latCoordCheck <= (lat1 + LAT_RADIUS) && lonCoordCheck >= (lon1 - LON_RADIUS) && lonCoordCheck <= (lon1 + LON_RADIUS)) {
-        poem = name1
+        poem = name1.replace(/\s+/g, '')
         url1 = youtubeUrl1
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+
         let timer = (((min1*60) + sec1) * 1000)
         // if the window has not previously been opened
         if(openTab[0] !== `${url1}` && openTab !== `${url1}` && identifier !== name1) {
@@ -228,8 +231,10 @@ function setCurrentPosition( position ) {
     // POEM 2 ///////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat2 - LAT_RADIUS) && latCoordCheck <= (lat2 + LAT_RADIUS) && lonCoordCheck >= (lon2 - LON_RADIUS) && lonCoordCheck <= (lon2 + LON_RADIUS)) {
-        poem = name2
+        poem = name2.replace(/\s+/g, '')
         url2 = youtubeUrl2
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+
         let timer = (((min2*60) + sec2) * 1000)
         if(location != `${url2}` && openTab !== `${url2}` && identifier !== name2) {
           openTab.push(window.open(`${url2}`, '_blank'))
@@ -253,8 +258,10 @@ function setCurrentPosition( position ) {
     // POEM 3 ////////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat3 - LAT_RADIUS) && latCoordCheck <= (lat3 + LAT_RADIUS) && lonCoordCheck >= (lon3 - LON_RADIUS) && lonCoordCheck <= (lon3 + LON_RADIUS)) {
-        poem = name3
+        poem = name3.replace(/\s+/g, '')
         url3 = youtubeUrl3
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+
         let timer = (((min3*60) + sec3) * 1000)
         if(location != `${url3}` && openTab !== `${url3}` && identifier !== name3) {
           openTab.push(window.open(`${url3}`, '_blank'))
@@ -278,8 +285,10 @@ function setCurrentPosition( position ) {
     // POEM 4 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat4 - LAT_RADIUS) && latCoordCheck <= (lat4 + LAT_RADIUS) && lonCoordCheck >= (lon4 - LON_RADIUS) && lonCoordCheck <= (lon4 + LON_RADIUS)) {
-        poem = name4
+        poem = name4.replace(/\s+/g, '')
         url4 = youtubeUrl4
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+
         let timer = (((min4*60) + sec4) * 1000)
         if(location != `${url4}` && openTab !== `${url4}` && identifier !== name4) {
           openTab.push(window.open(`${url4}`, '_blank'))
@@ -303,8 +312,10 @@ function setCurrentPosition( position ) {
     // POEM 5 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat5 - LAT_RADIUS) && latCoordCheck <= (lat5 + LAT_RADIUS) && lonCoordCheck >= (lon5 - LON_RADIUS) && lonCoordCheck <= (lon5 + LON_RADIUS)) {
-        poem = name5
+        poem = name5.replace(/\s+/g, '')
         url5 = youtubeUrl5
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+
         let timer = (((min5*60) + sec5) * 1000)
         if(location != `${url5}` && openTab !== `${url5}` && identifier !== name5) {
           openTab.push(window.open(`${url5}`, '_blank'))
@@ -328,8 +339,10 @@ function setCurrentPosition( position ) {
     // POEM 6 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat6 - LAT_RADIUS) && latCoordCheck <= (lat6 + LAT_RADIUS) && lonCoordCheck >= (lon6 - LON_RADIUS) && lonCoordCheck <= (lon6 + LON_RADIUS)) {
-        poem = name6
+        poem = name6.replace(/\s+/g, '')
         url6 = youtubeUrl6
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+
         let timer = (((min6*60) + sec6) * 1000)
         if(location != `${url6}` && openTab !== `${url6}` && identifier !== name6) {
           openTab.push(window.open(`${url6}`, '_blank'))
@@ -353,8 +366,10 @@ function setCurrentPosition( position ) {
     // POEM 7 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat7 - LAT_RADIUS) && latCoordCheck <= (lat7 + LAT_RADIUS) && lonCoordCheck >= (lon7 - LON_RADIUS) && lonCoordCheck <= (lon7 + LON_RADIUS)) {
-        poem = name7
+        poem = name7.replace(/\s+/g, '')
         url7 = youtubeUrl7
+        mainHeaderImage.style.backgroundImage = `"url(/image/${poem}.jpg)"`
+
         let timer = (((min7*60) + sec7) * 1000)
         if(location != `${url7}` && openTab !== `${url7}` && identifier !== name7) {
           openTab.push(window.open(`${url7}`, '_blank'))
@@ -378,8 +393,9 @@ function setCurrentPosition( position ) {
     // POEM 8 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat8 - LAT_RADIUS) && latCoordCheck <= (lat8 + LAT_RADIUS) && lonCoordCheck >= (lon8 - LON_RADIUS) && lonCoordCheck <= (lon8 + LON_RADIUS)) {
-        poem = name8
+        poem = name8.replace(/\s+/g, '')
         url8 = youtubeUrl8
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
         let timer = (((min8*60) + sec8) * 1000)
         if(location != `${url8}` && openTab !== `${url8}` && identifier !== name8) {
           openTab.push(window.open(`${url8}`, '_blank'))
@@ -405,8 +421,9 @@ function setCurrentPosition( position ) {
     // POEM 9 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat9 - LAT_RADIUS) && latCoordCheck <= (lat9 + LAT_RADIUS) && lonCoordCheck >= (lon9 - LON_RADIUS) && lonCoordCheck <= (lon9 + LON_RADIUS)) {
-        poem = name9
+        poem = name9.replace(/\s+/g, '')
         url9 = youtubeUrl9
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
         let timer = (((min9*60) + sec9) * 1000)
         if(location != `${url9}` && openTab !== `${url9}` && identifier !== name9) {
           openTab.push(window.open(`${url9}`, '_blank'))
@@ -432,8 +449,10 @@ function setCurrentPosition( position ) {
     // POEM 10 //////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat10 - LAT_RADIUS) && latCoordCheck <= (lat10 + LAT_RADIUS) && lonCoordCheck >= (lon10 - LON_RADIUS) && lonCoordCheck <= (lon10 + LON_RADIUS)) {
-        poem = name10
+        poem = name10.replace(/\s+/g, '')
         url10 = youtubeUrl10
+        mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
+        console.log("header image", mainHeaderImage.style.backgroundImage)
         let timer = (((min10*60) + sec10) * 1000)
         if(location != `${url10}` && openTab !== `${url10}` && identifier !== name10) {
           openTab.push(window.open(`${url10}`, '_blank'))
