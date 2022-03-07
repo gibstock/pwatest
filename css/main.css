@@ -254,9 +254,19 @@ input:checked + .slider:before {
  }
  input[type="button"] {
    align-self: center;
-   background-color: #111;
-   color: #f1f1f1;
+   background-color: hsla(0, 0%, 100%, .8);
+   color: #111;
    margin-bottom: 1em;
+   padding: 1em;
+   width: 100%;
+   border: 2px solid #111;
+   border-radius: 12px;
+   box-shadow: none;
+   font-size: large;
+ }
+ input[type="button"]:hover {
+   background-color: #111;
+   color: #fff;
  }
 
  .arrow {
