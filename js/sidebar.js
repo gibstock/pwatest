@@ -16,17 +16,21 @@ function closeMobileNav() {
 }
 
 const toggleDetails = () => {
-  if(details.style.display === 'none') {
-    details.style.display = 'inherit'
+  if(details.className.includes('no-display')) {
+    details.classList.remove('no-display')
+    details.classList.add('display')
     arrow.style.width = '2em'
     arrow.style.top = '0'
     arrow.style.left = '-30%'
 
-  } else {
-    details.style.display = 'none'
+  } else if(details.className.includes('display')) {
+    details.classList.remove('display')
+    details.classList.add('no-display')
     arrow.style.width = '5em'
     arrow.style.top = '-100%'
     arrow.style.left = '-60%'
+    detailsBtn.style.backgroundColor = '#fff'
+    detailsBtn.style.color = '#111'
 
   }
 }

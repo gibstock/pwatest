@@ -276,8 +276,11 @@ input:checked + .slider:before {
    width: 5em;
    animation: reveal 3s linear;
  }
- #details {
+ .no-display {
    display: none;
+ }
+ .display {
+   display: block;
  }
  ol {
    padding: 0;
