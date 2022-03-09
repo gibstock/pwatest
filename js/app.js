@@ -14,8 +14,8 @@ const MASTER_URL = 'https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJ
 const TESTING_URL = 'https://docs.google.com/spreadsheets/d/1UXk1YdG3AOJQ2YkSMxBG5PWebQGkO_TXq5Ni7s6ffws/gviz/tq?tqx=out:json'
 
 //Constants for establishing an equal perimeter. Can be adjusted to fit the bounding area
-const LAT_RADIUS = 0.0011
-const LON_RADIUS = 0.00050
+const LAT_RADIUS = 0.000240
+const LON_RADIUS = 0.000240 // 60 ft radius
 
 // position tracking
 let geoWatch;
