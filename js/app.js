@@ -56,10 +56,49 @@ function startWatch() {
   }
 }
 
+//========FUNCTIONS========\\
+
 // Close previously opened tabs
 function closeTab() {
   openTab[0].close()
   console.log("tabs closed")
+}
+
+// Create variables 
+const createLat = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`lat${i + 1}`] = `${obj[i].c[0].v}`
+  }
+}
+const createLon = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`lon${i + 1}`] = `${obj[i].c[1].v}`
+  }
+}
+const createUrl = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`url${i + 1}`] = `${obj[i].c[2].v}`
+  }
+}
+const createYoutubeUrl = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`youtubeUrl${i + 1}`] = `${obj[i].c[3].v}`
+  }
+}
+const createMin = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`min${i + 1}`] = `${obj[i].c[5].v}`
+  }
+}
+const createSec = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`sec${i + 1}`] = `${obj[i].c[6].v}`
+  }
+}
+const createName = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`name${i + 1}`] = `${obj[i].c[7].v}`
+  }
 }
 
 // begin to fetch coordinates and set the geolocation
@@ -76,99 +115,19 @@ function setCurrentPosition( position ) {
       // Get only the part of the google sheet response that is in json format, parse as json
       const result = (JSON.parse(data.slice(colStart, data.length - 3))).rows
 
-    // -- there should be a more dynamic way to set the variables
-    // -- Add functionality that assigns variables to each group of variable types
+    // -- there should be a more dynamic way to set the variables --DONE
+    // -- Add functionality that assigns variables to each group of variable types --DONE
+      let resultLength = Object.keys(result).length // set length for dynamic variable rendering
 
-    // Poem 1
-    let lat1 = result[0].c[0].v
-    let lon1 = result[0].c[1].v
-    let url1 = result[0].c[2].v
-    let youtubeUrl1 = result[0].c[3].v
-    let min1 = result[0].c[5].v
-    let sec1 = result[0].c[6].v
-    let name1 = result[0].c[7].v
-
-    // Poem 2
-    let lat2 = result[1].c[0].v
-    let lon2 = result[1].c[1].v
-    let url2 = result[1].c[2].v
-    let youtubeUrl2 = result[1].c[3].v
-    let min2 = result[1].c[5].v
-    let sec2 = result[1].c[6].v
-    let name2 = result[1].c[7].v
+      // Calling functions to dynamically render variables
+      createLat(result, resultLength)
+      createLon(result, resultLength)
+      createUrl(result, resultLength)
+      createYoutubeUrl(result, resultLength)
+      createMin(result, resultLength)
+      createSec(result, resultLength)
+      createName(result, resultLength)
     
-    // Poem 3
-    let lat3 = result[2].c[0].v
-    let lon3 = result[2].c[1].v
-    let url3 = result[2].c[2].v
-    let youtubeUrl3 = result[2].c[3].v
-    let min3 = result[2].c[5].v
-    let sec3 = result[2].c[6].v
-    let name3 = result[2].c[7].v
-    
-    // Poem 4
-    let lat4 = result[3].c[0].v
-    let lon4 = result[3].c[1].v
-    let url4 = result[3].c[2].v
-    let youtubeUrl4 = result[3].c[3].v
-    let min4 = result[3].c[5].v
-    let sec4 = result[3].c[6].v
-    let name4 = result[3].c[7].v
-    
-    // Poem 5
-    let lat5 = result[4].c[0].v
-    let lon5 = result[4].c[1].v
-    let url5 = result[4].c[2].v
-    let youtubeUrl5 = result[4].c[3].v
-    let min5 = result[4].c[5].v
-    let sec5 = result[4].c[6].v
-    let name5 = result[4].c[7].v
-    
-    // Poem 6
-    let lat6 = result[5].c[0].v
-    let lon6 = result[5].c[1].v
-    let url6 = result[5].c[2].v
-    let youtubeUrl6 = result[5].c[3].v
-    let min6 = result[5].c[5].v
-    let sec6 = result[5].c[6].v
-    let name6 = result[5].c[7].v
-    
-    // Poem 7
-    let lat7 = result[6].c[0].v
-    let lon7 = result[6].c[1].v
-    let url7 = result[6].c[2].v
-    let youtubeUrl7 = result[6].c[3].v
-    let min7 = result[6].c[5].v
-    let sec7 = result[6].c[6].v
-    let name7 = result[6].c[7].v
-    console.log(name7)
-    
-    // Poem 8
-    let lat8 = result[7].c[0].v
-    let lon8 = result[7].c[1].v
-    let url8 = result[7].c[2].v
-    let youtubeUrl8 = result[7].c[3].v
-    let min8 = result[7].c[5].v
-    let sec8 = result[7].c[6].v
-    let name8 = result[7].c[7].v
-    
-    // Poem 9
-    let lat9 = result[8].c[0].v
-    let lon9 = result[8].c[1].v
-    let url9 = result[8].c[2].v
-    let youtubeUrl9 = result[8].c[3].v
-    let min9 = result[8].c[5].v
-    let sec9 = result[8].c[6].v
-    let name9 = result[8].c[7].v
-    
-    // Poem 10
-    let lat10 = result[9].c[0].v
-    let lon10 = result[9].c[1].v
-    let url10 = result[9].c[2].v
-    let youtubeUrl10 = result[9].c[3].v
-    let min10 = result[9].c[5].v
-    let sec10 = result[9].c[6].v
-    let name10 = result[9].c[7].v
     
 
     console.log('fetched')
@@ -185,7 +144,7 @@ function setCurrentPosition( position ) {
     // Conditionally checking and functionality of launching external sites
 
     // if the coordinate bounding box is entered
-    // Use classes to render these?
+    // Use classes to render these? --
     // POEM 1 ////////
     if(!tabHasLaunched) {
       if(latCoordCheck >= (lat1 - LAT_RADIUS) && latCoordCheck <= (lat1 + LAT_RADIUS) && lonCoordCheck >= (lon1 - LON_RADIUS) && lonCoordCheck <= (lon1 + LON_RADIUS)) {
