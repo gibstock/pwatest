@@ -10,13 +10,18 @@ const offIndicator = document.getElementById('off')
 const leftArrow = document.querySelector('.arrow')
 const mainHeaderImage = document.getElementById('main-header')
 
+// For testing only
+const stopBtn = document.getElementById('stop-sound')
+stopBtn.style.display = 'none'
+
+
 const MASTER_URL = 'https://docs.google.com/spreadsheets/d/1AQMb2Whd0s7h0ceczLrJzPai5zNXgZBHl1qR5pO3Aog/gviz/tq?tqx=out:json'
 const TESTING_URL = 'https://docs.google.com/spreadsheets/d/1UXk1YdG3AOJQ2YkSMxBG5PWebQGkO_TXq5Ni7s6ffws/gviz/tq?tqx=out:json'
+const SOUND_DRIVE_URL = 'https://docs.google.com/uc?export=download&id='
 
 //Constants for establishing an equal perimeter. Can be adjusted to fit the bounding area
 const LAT_RADIUS = 0.000240
 const LON_RADIUS = 0.000240 // 70 ft radius .000024 = 7ft ~.00000343 = 1ft
-
 // position tracking
 let geoWatch;
 let lonCoordCheck;
@@ -32,6 +37,28 @@ let identifier;
 // Log the currently launched external url
 const openTab = []
 let tabHasLaunched = false;
+
+// Initiate Sound file
+class Sound {
+  constructor(src) {
+    this.sound = document.createElement('audio')
+    this.sound.src = src
+    this.sound.setAttribute('preload', 'auto')
+    this.sound.setAttribute('controls', 'none')
+    this.sound.style.display = 'none'
+    document.body.appendChild(this.sound)
+    this.play = function () {
+      this.sound.play()
+    }
+    this.stop = function () {
+      this.sound.pause()
+    }
+  }
+}
+
+
+// let sound1 = new Sound('../sound/poem1.mp3')
+// let sound1 = new Sound('https://docs.google.com/uc?export=download&id=1PhqYAw8-INVo6-QWHVPZJADOsmwXtzem')
 
 // register service worker for caching assets
 if('serviceWorker' in navigator) {
@@ -58,6 +85,35 @@ function startWatch() {
 
 //========FUNCTIONS========\\
 
+// Play and Stop Sounds
+function playSound(soundUrl, timer) {
+  let soundFile = new Sound(soundUrl)
+  stopBtn.addEventListener('click', () => {
+    soundFile.stop()
+    stopBtn.style.display = 'none'
+    console.log("Sound Stopped")
+  })
+  stopBtn.style.display = 'flex'
+  stopBtn.style.position = 'absolute'
+  stopBtn.style.bottom = '40%'
+  stopBtn.style.left = '50%'
+  stopBtn.style.transform = 'translateX(-50%)'
+  stopBtn.style.border = 'none'
+  stopBtn.style.borderRadius = '12px'
+  stopBtn.style.padding = '1em'
+  stopBtn.style.fontSize = '1.5em'
+  stopBtn.style.backgroundColor = 'hsla(0, 0%, 100%, .7'
+  soundFile.play()
+  console.log("sound playing")
+  setTimeout(() => {
+    soundFile.stop()
+    stopBtn.style.display = 'none'
+    console.log("sound stopped")
+
+  }, timer)
+}
+
+
 // Close previously opened tabs
 function closeTab() {
   openTab[0].close()
@@ -67,37 +123,42 @@ function closeTab() {
 // Create variables 
 const createLat = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`lat${i + 1}`] = `${obj[i].c[0].v}`
+    this[`lat${i + 1}`] = parseFloat(`${obj[i].c[0].v}`) // COLUMN A
   }
 }
 const createLon = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`lon${i + 1}`] = `${obj[i].c[1].v}`
+    this[`lon${i + 1}`] = parseFloat(`${obj[i].c[1].v}`) // COLUMN B
   }
 }
 const createUrl = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`url${i + 1}`] = `${obj[i].c[2].v}`
+    this[`url${i + 1}`] = `${obj[i].c[2].v}`            // COLUMN C
   }
 }
 const createYoutubeUrl = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`youtubeUrl${i + 1}`] = `${obj[i].c[3].v}`
+    this[`youtubeUrl${i + 1}`] = `${obj[i].c[3].v}`    // COLUMN D
   }
 }
 const createMin = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`min${i + 1}`] = `${obj[i].c[5].v}`
+    this[`min${i + 1}`] = `${obj[i].c[5].v}`          // COLUMN F
   }
 }
 const createSec = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`sec${i + 1}`] = `${obj[i].c[6].v}`
+    this[`sec${i + 1}`] = `${obj[i].c[6].v}`         // COLUMN G
   }
 }
 const createName = (obj, objLen) => {
   for(let i = 0; i < objLen; i++){
-    this[`name${i + 1}`] = `${obj[i].c[7].v}`
+    this[`name${i + 1}`] = `${obj[i].c[7].v}`       // COLUMN H
+  }
+}
+const createLocation = (obj, objLen) => {
+  for(let i = 0; i < objLen; i++){
+    this[`loc${i + 1}`] = `${obj[i].c[8].v}`       // COLUMN I
   }
 }
 
@@ -115,6 +176,8 @@ function setCurrentPosition( position ) {
       // Get only the part of the google sheet response that is in json format, parse as json
       const result = (JSON.parse(data.slice(colStart, data.length - 3))).rows
 
+      console.log("RESULT", result)
+
     // -- there should be a more dynamic way to set the variables --DONE
     // -- Add functionality that assigns variables to each group of variable types --DONE
       let resultLength = Object.keys(result).length // set length for dynamic variable rendering
@@ -127,6 +190,7 @@ function setCurrentPosition( position ) {
       createMin(result, resultLength)
       createSec(result, resultLength)
       createName(result, resultLength)
+      createLocation(result, resultLength)
     
     
 
@@ -140,49 +204,67 @@ function setCurrentPosition( position ) {
 
     //testing truthiness of condition
     // console.log("poem 1", latCoordCheck >= (lat1 - LAT_RADIUS) , latCoordCheck <= (lat1 + LAT_RADIUS) ,lonCoordCheck >= (lon1 - LON_RADIUS) ,lonCoordCheck <= (lon1 + LON_RADIUS))
+    // console.log(lonCoordCheck, lon1, LON_RADIUS, typeof (lon1 + LON_RADIUS))
+
 
     // Conditionally checking and functionality of launching external sites
 
     // if the coordinate bounding box is entered
     // Use classes to render these? --
     // POEM 1 ////////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat1 - LAT_RADIUS) && latCoordCheck <= (lat1 + LAT_RADIUS) && lonCoordCheck >= (lon1 - LON_RADIUS) && lonCoordCheck <= (lon1 + LON_RADIUS)) {
         poem = name1.replace(/\s+/g, '')
         url1 = youtubeUrl1
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
-
         let timer = (((min1*60) + sec1) * 1000)
-        // if the window has not previously been opened
-        if(openTab[0] !== `${url1}` && openTab !== `${url1}` && identifier !== name1) {
-  
-          // launch the new window with the poems page and push the location of the open tab to openTab
-          openTab.push(window.open(`${url1}`, '_blank'))
-  
-          // Set identifier to current poem
-          identifier = name1
+        let soundFile = SOUND_DRIVE_URL + url1
+        // TEST SOUND ACTIVATIONS //
 
-          // Set boolean to true for conditional testing
-          tabHasLaunched = true
+        // function playSound() {
+        //   stopBtn.style.display = 'flex'
+        //   sound1.play()
+        //   console.log("sound playing")
+        //   setTimeout(() => {
+        //     sound1.stop()
+        //     stopBtn.style.display = 'none'
+        //     console.log("sound stopped")
+  
+        //   }, timer)
+        // }
+        playSound(soundFile, timer)
+
+        // // if the window has not previously been opened
+        // if(openTab[0] !== `${url1}` && openTab !== `${url1}` && identifier !== name1) {
+  
+        //   // launch the new window with the poems page and push the location of the open tab to openTab
+        //   openTab.push(window.open(`${url1}`, '_blank'))
+  
+        //   // Set identifier to current poem
+        //   identifier = name1
+
+        //   // Set boolean to true for conditional testing
+        //   tabHasLaunched = true
           
-          // If a tab already exists, close it
-          if(openTab[1]) {
-            closeTab()
-          }
+        //   // If a tab already exists, close it
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
   
-          // Auto close the tab after the length of the current poem has passed
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
+        //   // Auto close the tab after the length of the current poem has passed
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
 
-              // Set conditional test back to false
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
-      sheets.innerText = poem // Output the name of the current poem
+        //       // Set conditional test back to false
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+      sheets.style.fontWeight = 'bold'  
+      sheets.innerText = loc1 // Output the name of the current poem or location
       }
-    }
+    // }
 
     // there will be the same code block for each location
     // maybe these can be modularized
@@ -539,6 +621,8 @@ function checkToggle () {
     stopWatch()
   }
 }
+
+
 
 // Listen for changes to the toggle
 toggle.addEventListener('change', checkToggle)
