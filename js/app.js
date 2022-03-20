@@ -211,6 +211,7 @@ function setCurrentPosition( position ) {
 
     // if the coordinate bounding box is entered
     // Use classes to render these? --
+    
     // POEM 1 ////////
     // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat1 - LAT_RADIUS) && latCoordCheck <= (lat1 + LAT_RADIUS) && lonCoordCheck >= (lon1 - LON_RADIUS) && lonCoordCheck <= (lon1 + LON_RADIUS)) {
@@ -219,19 +220,7 @@ function setCurrentPosition( position ) {
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
         let timer = (((min1*60) + sec1) * 1000)
         let soundFile = SOUND_DRIVE_URL + url1
-        // TEST SOUND ACTIVATIONS //
-
-        // function playSound() {
-        //   stopBtn.style.display = 'flex'
-        //   sound1.play()
-        //   console.log("sound playing")
-        //   setTimeout(() => {
-        //     sound1.stop()
-        //     stopBtn.style.display = 'none'
-        //     console.log("sound stopped")
-  
-        //   }, timer)
-        // }
+        
         playSound(soundFile, timer)
 
         // // if the window has not previously been opened
@@ -270,252 +259,284 @@ function setCurrentPosition( position ) {
     // maybe these can be modularized
     // console.log("poem 2", latCoordCheck >= (lat2 - LAT_RADIUS) , latCoordCheck <= (lat2 + LAT_RADIUS) ,lonCoordCheck >= (lon2 - LON_RADIUS) ,lonCoordCheck <= (lon2 + LON_RADIUS))
     // POEM 2 ///////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat2 - LAT_RADIUS) && latCoordCheck <= (lat2 + LAT_RADIUS) && lonCoordCheck >= (lon2 - LON_RADIUS) && lonCoordCheck <= (lon2 + LON_RADIUS)) {
         poem = name2.replace(/\s+/g, '')
         url2 = youtubeUrl2
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
-
         let timer = (((min2*60) + sec2) * 1000)
-        if(location != `${url2}` && openTab !== `${url2}` && identifier !== name2) {
-          openTab.push(window.open(`${url2}`, '_blank'))
-          identifier = name2
-          tabHasLaunched = true;
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
-        sheets.innerText = poem
+        let soundFile = SOUND_DRIVE_URL + url2
+
+        playSound(soundFile, timer)
+        // if(location != `${url2}` && openTab !== `${url2}` && identifier !== name2) {
+        //   openTab.push(window.open(`${url2}`, '_blank'))
+        //   identifier = name2
+        //   tabHasLaunched = true;
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'  
+        sheets.innerText = loc2
   
       }
-    }
+    // }
 
     // POEM 3 ////////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat3 - LAT_RADIUS) && latCoordCheck <= (lat3 + LAT_RADIUS) && lonCoordCheck >= (lon3 - LON_RADIUS) && lonCoordCheck <= (lon3 + LON_RADIUS)) {
         poem = name3.replace(/\s+/g, '')
         url3 = youtubeUrl3
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
-
         let timer = (((min3*60) + sec3) * 1000)
-        if(location != `${url3}` && openTab !== `${url3}` && identifier !== name3) {
-          openTab.push(window.open(`${url3}`, '_blank'))
-          identifier = name3
-          tabHasLaunched = true;
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url3
+        playSound(soundFile, timer)
+        // if(location != `${url3}` && openTab !== `${url3}` && identifier !== name3) {
+        //   openTab.push(window.open(`${url3}`, '_blank'))
+        //   identifier = name3
+        //   tabHasLaunched = true;
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 4 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat4 - LAT_RADIUS) && latCoordCheck <= (lat4 + LAT_RADIUS) && lonCoordCheck >= (lon4 - LON_RADIUS) && lonCoordCheck <= (lon4 + LON_RADIUS)) {
         poem = name4.replace(/\s+/g, '')
         url4 = youtubeUrl4
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
-
         let timer = (((min4*60) + sec4) * 1000)
-        if(location != `${url4}` && openTab !== `${url4}` && identifier !== name4) {
-          openTab.push(window.open(`${url4}`, '_blank'))
-          identifier = name4
-          tabHasLaunched = true;
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url4
+
+        playSound(soundFile, timer)
+        // if(location != `${url4}` && openTab !== `${url4}` && identifier !== name4) {
+        //   openTab.push(window.open(`${url4}`, '_blank'))
+        //   identifier = name4
+        //   tabHasLaunched = true;
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 5 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat5 - LAT_RADIUS) && latCoordCheck <= (lat5 + LAT_RADIUS) && lonCoordCheck >= (lon5 - LON_RADIUS) && lonCoordCheck <= (lon5 + LON_RADIUS)) {
         poem = name5.replace(/\s+/g, '')
         url5 = youtubeUrl5
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
 
         let timer = (((min5*60) + sec5) * 1000)
-        if(location != `${url5}` && openTab !== `${url5}` && identifier !== name5) {
-          openTab.push(window.open(`${url5}`, '_blank'))
-          identifier = name5
-          tabHasLaunched = true;
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url5
+
+        playSound(soundFile, timer)
+        // if(location != `${url5}` && openTab !== `${url5}` && identifier !== name5) {
+        //   openTab.push(window.open(`${url5}`, '_blank'))
+        //   identifier = name5
+        //   tabHasLaunched = true;
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 6 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat6 - LAT_RADIUS) && latCoordCheck <= (lat6 + LAT_RADIUS) && lonCoordCheck >= (lon6 - LON_RADIUS) && lonCoordCheck <= (lon6 + LON_RADIUS)) {
         poem = name6.replace(/\s+/g, '')
         url6 = youtubeUrl6
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
 
         let timer = (((min6*60) + sec6) * 1000)
-        if(location != `${url6}` && openTab !== `${url6}` && identifier !== name6) {
-          openTab.push(window.open(`${url6}`, '_blank'))
-          identifier = name6
-          tabHasLaunched = true;
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url6
+
+        playSound(soundFile, timer)
+        // if(location != `${url6}` && openTab !== `${url6}` && identifier !== name6) {
+        //   openTab.push(window.open(`${url6}`, '_blank'))
+        //   identifier = name6
+        //   tabHasLaunched = true;
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 7 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat7 - LAT_RADIUS) && latCoordCheck <= (lat7 + LAT_RADIUS) && lonCoordCheck >= (lon7 - LON_RADIUS) && lonCoordCheck <= (lon7 + LON_RADIUS)) {
         poem = name7.replace(/\s+/g, '')
         url7 = youtubeUrl7
         mainHeaderImage.style.backgroundImage = `"url(/image/${poem}.jpg)"`
 
         let timer = (((min7*60) + sec7) * 1000)
-        if(location != `${url7}` && openTab !== `${url7}` && identifier !== name7) {
-          openTab.push(window.open(`${url7}`, '_blank'))
-          identifier = name7
-          tabHasLaunched = true;
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url7
+
+        playSound(soundFile, timer)
+        // if(location != `${url7}` && openTab !== `${url7}` && identifier !== name7) {
+        //   openTab.push(window.open(`${url7}`, '_blank'))
+        //   identifier = name7
+        //   tabHasLaunched = true;
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 8 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat8 - LAT_RADIUS) && latCoordCheck <= (lat8 + LAT_RADIUS) && lonCoordCheck >= (lon8 - LON_RADIUS) && lonCoordCheck <= (lon8 + LON_RADIUS)) {
         poem = name8.replace(/\s+/g, '')
         url8 = youtubeUrl8
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
         let timer = (((min8*60) + sec8) * 1000)
-        if(location != `${url8}` && openTab !== `${url8}` && identifier !== name8) {
-          openTab.push(window.open(`${url8}`, '_blank'))
-          identifier = name8
-          tabHasLaunched = true;
-          console.log(tabHasLaunched)
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-              console.log(tabHasLaunched)
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url8
+
+        playSound(soundFile, timer)
+        // if(location != `${url8}` && openTab !== `${url8}` && identifier !== name8) {
+        //   openTab.push(window.open(`${url8}`, '_blank'))
+        //   identifier = name8
+        //   tabHasLaunched = true;
+        //   console.log(tabHasLaunched)
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //       console.log(tabHasLaunched)
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 9 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat9 - LAT_RADIUS) && latCoordCheck <= (lat9 + LAT_RADIUS) && lonCoordCheck >= (lon9 - LON_RADIUS) && lonCoordCheck <= (lon9 + LON_RADIUS)) {
         poem = name9.replace(/\s+/g, '')
         url9 = youtubeUrl9
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
         let timer = (((min9*60) + sec9) * 1000)
-        if(location != `${url9}` && openTab !== `${url9}` && identifier !== name9) {
-          openTab.push(window.open(`${url9}`, '_blank'))
-          identifier = name9
-          tabHasLaunched = true;
-          console.log(tabHasLaunched)
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-              console.log(tabHasLaunched)
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url9
+
+        playSound(soundFile, timer)
+        // if(location != `${url9}` && openTab !== `${url9}` && identifier !== name9) {
+        //   openTab.push(window.open(`${url9}`, '_blank'))
+        //   identifier = name9
+        //   tabHasLaunched = true;
+        //   console.log(tabHasLaunched)
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //       console.log(tabHasLaunched)
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
-    }
+    // }
 
     // POEM 10 //////
-    if(!tabHasLaunched) {
+    // if(!tabHasLaunched) {
       if(latCoordCheck >= (lat10 - LAT_RADIUS) && latCoordCheck <= (lat10 + LAT_RADIUS) && lonCoordCheck >= (lon10 - LON_RADIUS) && lonCoordCheck <= (lon10 + LON_RADIUS)) {
         poem = name10.replace(/\s+/g, '')
         url10 = youtubeUrl10
         mainHeaderImage.style.backgroundImage = `url(/image/${poem}.jpg)`
         console.log("header image", mainHeaderImage.style.backgroundImage)
         let timer = (((min10*60) + sec10) * 1000)
-        if(location != `${url10}` && openTab !== `${url10}` && identifier !== name10) {
-          openTab.push(window.open(`${url10}`, '_blank'))
-          identifier = name10
-          tabHasLaunched = true;
-          console.log(tabHasLaunched)
-          if(openTab[1]) {
-            closeTab()
-          }
-          setTimeout(() => {
-            for(let i = 0; i<openTab.length; i++) {
-              openTab[i].close()
-              tabHasLaunched = false;
-              console.log(tabHasLaunched)
-            }
-          }, timer)
-        }
+        let soundFile = SOUND_DRIVE_URL + url10
+
+        playSound(soundFile, timer)
+        // if(location != `${url10}` && openTab !== `${url10}` && identifier !== name10) {
+        //   openTab.push(window.open(`${url10}`, '_blank'))
+        //   identifier = name10
+        //   tabHasLaunched = true;
+        //   console.log(tabHasLaunched)
+        //   if(openTab[1]) {
+        //     closeTab()
+        //   }
+        //   setTimeout(() => {
+        //     for(let i = 0; i<openTab.length; i++) {
+        //       openTab[i].close()
+        //       tabHasLaunched = false;
+        //       console.log(tabHasLaunched)
+        //     }
+        //   }, timer)
+        // }
+        sheets.style.fontWeight = 'bold'
         sheets.innerText = poem
   
       }
 
-    }
+    // }
 
 
   })
@@ -565,7 +586,8 @@ function locationPermissionInstructions() {
 function positionError( error ) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
-
+      // Check if user has geo permissions turned off and send
+      // them instructions with a message on how to turn on
       console.error("User denied the request for Geolocation")
       if(/Android|Pixel|iPhone|iPad|iPod/i.test(navigator.userAgent)){
         locationPermissionInstructions()
